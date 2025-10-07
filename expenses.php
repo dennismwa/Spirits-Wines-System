@@ -1,4 +1,4 @@
- <?php
+<?php
 require_once 'config.php';
 requireOwner();
 $page_title = 'Expenses';
