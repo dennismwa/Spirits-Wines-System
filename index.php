@@ -114,8 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pin'])) {
                     <div class="pin-dot w-4 h-4 rounded-full border-2 border-gray-300"></div>
                     <div class="pin-dot w-4 h-4 rounded-full border-2 border-gray-300"></div>
                     <div class="pin-dot w-4 h-4 rounded-full border-2 border-gray-300"></div>
-                    <div class="pin-dot w-4 h-4 rounded-full border-2 border-gray-300"></div>
-                    <div class="pin-dot w-4 h-4 rounded-full border-2 border-gray-300"></div>
                 </div>
 
                 <!-- Number Pad -->
@@ -156,9 +154,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pin'])) {
         // Number buttons
         document.querySelectorAll('[data-num]').forEach(btn => {
             btn.addEventListener('click', () => {
-                if (pin.length < 6) {
+                if (pin.length < 4) {
                     pin += btn.dataset.num;
                     updatePinDisplay();
+                    
+                    // Auto-submit when 4 digits entered
+                    if (pin.length === 4) {
+                        setTimeout(submitPin, 300);
+                    }
                 }
             });
         });
@@ -176,9 +179,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pin'])) {
 
         // Keyboard support
         document.addEventListener('keydown', (e) => {
-            if (e.key >= '0' && e.key <= '9' && pin.length < 6) {
+            if (e.key >= '0' && e.key <= '9' && pin.length < 4) {
                 pin += e.key;
                 updatePinDisplay();
+                
+                // Auto-submit when 4 digits entered
+                if (pin.length === 4) {
+                    setTimeout(submitPin, 300);
+                }
             } else if (e.key === 'Backspace') {
                 pin = pin.slice(0, -1);
                 updatePinDisplay();
@@ -204,6 +212,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pin'])) {
             const formData = new FormData();
             formData.append('pin', pin);
 
+            // Disable input during submission
+            document.querySelectorAll('.number-btn').forEach(btn => btn.disabled = true);
+
             fetch('', {
                 method: 'POST',
                 body: formData
@@ -211,7 +222,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pin'])) {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = data.data.redirect;
+                    errorMsg.classList.add('hidden');
+                    errorMsg.classList.remove('text-red-600');
+                    errorMsg.classList.add('text-green-600');
+                    errorMsg.textContent = 'Login successful! Redirecting...';
+                    errorMsg.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        window.location.href = data.data.redirect;
+                    }, 500);
                 } else {
                     errorMsg.textContent = data.message;
                     errorMsg.classList.remove('hidden');
@@ -223,11 +242,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pin'])) {
                         dot.style.animation = 'shake 0.5s';
                         setTimeout(() => dot.style.animation = '', 500);
                     });
+                    
+                    // Re-enable input
+                    document.querySelectorAll('.number-btn').forEach(btn => btn.disabled = false);
                 }
             })
             .catch(err => {
                 errorMsg.textContent = 'Connection error. Please try again.';
                 errorMsg.classList.remove('hidden');
+                pin = '';
+                updatePinDisplay();
+                document.querySelectorAll('.number-btn').forEach(btn => btn.disabled = false);
             });
         }
     </script>
