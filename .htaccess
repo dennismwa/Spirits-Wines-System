@@ -1,0 +1,27 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirect clean URLs to .php files
+RewriteRule ^index$ index.php [L]
+RewriteRule ^dashboard$ dashboard.php [L]
+RewriteRule ^pos$ pos.php [L]
+RewriteRule ^products$ products.php [L]
+RewriteRule ^categories$ categories.php [L]
+RewriteRule ^sales$ sales.php [L]
+RewriteRule ^inventory$ inventory.php [L]
+RewriteRule ^reports$ reports.php [L]
+RewriteRule ^expenses$ expenses.php [L]
+RewriteRule ^users$ users.php [L]
+RewriteRule ^settings$ settings.php [L]
+RewriteRule ^logout$ logout.php [L]
+RewriteRule ^receipt$ receipt.php [L]
+
+# Protect sensitive files
+<FilesMatch "^(config\.php|\.htaccess|error\.log|.*\.sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Error pages
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
