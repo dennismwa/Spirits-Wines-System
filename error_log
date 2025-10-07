@@ -1,0 +1,22 @@
+[06-Oct-2025 19:59:09 UTC] PHP Warning:  require_once(config.php): Failed to open stream: No such file or directory in /home/vxjtgclw/stockhub.zuri.co.ke/categories.php on line 2
+[06-Oct-2025 19:59:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/vxjtgclw/stockhub.zuri.co.ke/categories.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/vxjtgclw/stockhub.zuri.co.ke/categories.php on line 2
+[06-Oct-2025 19:59:18 UTC] PHP Warning:  require_once(config.php): Failed to open stream: No such file or directory in /home/vxjtgclw/stockhub.zuri.co.ke/dashboard.php on line 2
+[06-Oct-2025 19:59:18 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/vxjtgclw/stockhub.zuri.co.ke/dashboard.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/vxjtgclw/stockhub.zuri.co.ke/dashboard.php on line 2
+[06-Oct-2025 23:58:33 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 12
+[06-Oct-2025 23:58:33 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 13
+[06-Oct-2025 23:58:33 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 14
+[06-Oct-2025 23:58:33 Africa/Nairobi] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 15
+[06-Oct-2025 23:59:10 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 12
+[06-Oct-2025 23:59:10 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 13
+[06-Oct-2025 23:59:10 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 14
+[06-Oct-2025 23:59:10 Africa/Nairobi] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 15
+[06-Oct-2025 23:59:12 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 12
+[06-Oct-2025 23:59:12 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 13
+[06-Oct-2025 23:59:12 Africa/Nairobi] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 14
+[06-Oct-2025 23:59:12 Africa/Nairobi] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/vxjtgclw/stockhub.zuri.co.ke/config.php on line 15
