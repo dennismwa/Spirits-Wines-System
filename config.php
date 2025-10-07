@@ -1,4 +1,7 @@
 <?php
+// Start session FIRST before any output or configuration
+session_start();
+
 // Database Configuration
 define('DB_HOST', 'localhost');
 define('DB_USER', 'vxjtgclw_Spirits');
@@ -7,12 +10,6 @@ define('DB_NAME', 'vxjtgclw_Spirits');
 
 // Timezone Configuration
 date_default_timezone_set('Africa/Nairobi');
-
-// Session Configuration
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', 0);
-session_start();
 
 // Error Reporting
 error_reporting(E_ALL);
@@ -25,12 +22,14 @@ try {
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     
     if ($conn->connect_error) {
-        die("Database connection failed: " . $conn->connect_error);
+        error_log("Database connection failed: " . $conn->connect_error);
+        die("Database connection failed. Please contact administrator.");
     }
     
     $conn->set_charset("utf8mb4");
 } catch (Exception $e) {
-    die("Database error: " . $e->getMessage());
+    error_log("Database error: " . $e->getMessage());
+    die("Database error. Please contact administrator.");
 }
 
 // Helper Functions
@@ -51,7 +50,7 @@ function respond($success, $message = '', $data = null) {
 
 function requireAuth() {
     if (!isset($_SESSION['user_id'])) {
-        header('Location: /index');
+        header('Location: /index.php');
         exit;
     }
 }
@@ -59,7 +58,7 @@ function requireAuth() {
 function requireOwner() {
     requireAuth();
     if ($_SESSION['role'] !== 'owner') {
-        header('Location: /pos');
+        header('Location: /pos.php');
         exit;
     }
 }
@@ -93,7 +92,8 @@ function getSettings() {
         'logo_path' => '/logo.jpg',
         'primary_color' => '#ea580c',
         'currency' => 'KSh',
-        'tax_rate' => 0
+        'tax_rate' => 0,
+        'receipt_footer' => ''
     ];
 }
 
